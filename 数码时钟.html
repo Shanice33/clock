@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>数码时钟</title> 
+	<link rel="stylesheet" type="text/css" href="style/clock.css">
+	<script type="text/javascript">
+	function toDouble(n){
+		if(n<10){
+			return '0'+n;
+		}
+		else{
+			return ''+n;
+		}
+	}
+		window.onload=function(){
+			
+			var oSpan=document.getElementsByTagName("span");
+			var oDate=new Date();
+
+			
+			var str=toDouble(oDate.getFullYear())+toDouble(oDate.getMonth()+1)+toDouble(oDate.getDate());
+			var len=0;
+
+			for(var i=0;i<oSpan.length-1;i++){
+				var oImg=oSpan[i].getElementsByTagName("img");
+				
+
+				for(var j=0;j<oImg.length;j++){
+					oImg[j].src="img/"+str.charAt(j+len)+".png";
+				}
+				len+=oImg.length;
+			}
+
+			var oImg2=oSpan[oSpan.length-1].getElementsByTagName("img");
+			
+			function tick(){
+				var oDate=new Date();
+				var s=toDouble(oDate.getHours())+toDouble(oDate.getMinutes())+toDouble(oDate.getSeconds());
+				
+				for(var k=0;k<oImg2.length;k++){
+					oImg2[k].src="img/"+s.charAt(k)+".png";
+				}
+		    }
+
+			t=setInterval(tick,1000);
+			tick();
+			
+		};
+	</script>
+</head>
+<body>
+
+<img src="img/title.png"><br/>
+
+<span id="s1">
+<img src="img/0.png"/>
+<img src="img/0.png"/>
+<img src="img/0.png"/>
+<img src="img/0.png"/>
+</span>
+
+<img src="img/year.png"/>
+
+<span id="s2">
+<img src="img/0.png"/>
+<img src="img/0.png"/>
+</span>
+
+<img src="img/month.png"/>
+
+<span id="s3">
+<img src="img/0.png"/>
+<img src="img/0.png"/>
+</span>
+<img src="img/seven.png"/><br/>
+
+<span id="s4">
+<img src="img/0.png"/>
+<img src="img/0.png"/>
+:
+<img src="img/0.png"/>
+<img src="img/0.png"/>
+:
+<img src="img/0.png"/>
+<img src="img/0.png"/>
+</span>
+
+</body>
+</html>
